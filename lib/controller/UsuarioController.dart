@@ -36,24 +36,25 @@ Future<Usuario> login(Usuario usuario) async {
   }
 }
 
-Future<Usuario> cadastrarUsuario(Usuario usuario) async {
+Future<bool> cadastrarUsuario(Usuario usuario) async {
   final uri = Uri.parse(url + "salvar");
+  var j = usuario.toJson();
   final response = await http.post(uri,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': "*/*",
+        'Accept': "application/json; charset=UTF-8",
         'connection': 'keep-alive',
         'Accept-Encoding': 'gzip, deflate, br',
       },
-      body: jsonEncode(usuario));
+      body: jsonEncode(j));
 
   if (response.statusCode == 200) {
-    var datauser = json.decode(response.body);
-    Usuario usuarioResponse = Usuario.fromJson(datauser["usuario"]);
+    //var datauser = json.decode(response.body);
+    //Usuario usuarioResponse = Usuario.fromJson(datauser["usuario"]);
     //pessoa.setNome(datauser['pessoa']['nome']);
     //usuarioResponse.setPessoa(pessoa);
-    return usuarioResponse;
+    return true;
   } else {
-    return new Usuario();
+    return false;
   }
 }

@@ -3,6 +3,7 @@ import 'package:logistica_app/components/TextFields.dart';
 import 'package:logistica_app/components/buttons.dart';
 import 'package:logistica_app/controller/UsuarioController.dart';
 import 'package:logistica_app/models/Usuario.dart';
+import 'package:logistica_app/pages/cadastroUsuario.dart';
 import 'package:logistica_app/pages/inicioPage.dart';
 import 'package:toast/toast.dart';
 
@@ -82,6 +83,8 @@ class _LoginPageState extends State<LoginPage> {
                 backgroundColor: Colors.red,
                 duration: Toast.LENGTH_LONG,
                 gravity: Toast.BOTTOM);
+            textFildUserController.text = '';
+            textFildPassController.text = '';
           }
         }
       },
@@ -91,57 +94,62 @@ class _LoginPageState extends State<LoginPage> {
       cor: Colors.white,
       texto: Text("CRIAR CONTA", style: TextStyle(color: Colors.cyan.shade700)),
       onPressed: () {
-        print("criar acc");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CadastroUsuarioPage()));
       },
     );
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Colors.cyan.shade700,
-        alignment: Alignment.center,
-        child: Container(
-          width: MediaQuery.of(context).size.width - 50,
-          height: MediaQuery.of(context).size.height - 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SizedBox(height: 25),
-                icon,
-                SizedBox(height: 25),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Nome de usuário",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+      body: ListView(children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: Colors.cyan.shade700,
+          alignment: Alignment.center,
+          child: Container(
+            width: MediaQuery.of(context).size.width - 50,
+            height: MediaQuery.of(context).size.height - 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 25),
+                  icon,
+                  SizedBox(height: 25),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Nome de usuário",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    ),
                   ),
-                ),
-                SizedBox(height: 2),
-                userField,
-                SizedBox(height: 25),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Senha",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                  SizedBox(height: 2),
+                  userField,
+                  SizedBox(height: 25),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Senha",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    ),
                   ),
-                ),
-                SizedBox(height: 2),
-                passwordField,
-                SizedBox(height: 25),
-                loginButton,
-                SizedBox(height: 2),
-                createAccountButton
-              ],
+                  SizedBox(height: 2),
+                  passwordField,
+                  SizedBox(height: 25),
+                  loginButton,
+                  SizedBox(height: 2),
+                  createAccountButton
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ]),
     );
   }
 }

@@ -75,7 +75,12 @@ class Usuario {
         this._email = json['email'],
         this._pessoa = Pessoa.fromJson(json["pessoa"]);
 
-  Map<String, dynamic> toJson() => {'login': this._login, 'senha': this._senha};
+  Map<String, dynamic> toJson() => {
+        'login': this._login,
+        'senha': this._senha,
+        "email": this._email,
+        "pessoa": this._pessoa.toJson()
+      };
 
   @override
   String toString() {

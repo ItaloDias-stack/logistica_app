@@ -2,7 +2,7 @@ import 'Produto.dart';
 
 class Estoque {
   int? _id;
-  String? _nome;
+  String _nome = '';
   List<Produto>? _produtos;
 
   Estoque();
@@ -20,7 +20,7 @@ class Estoque {
     this._nome = nome;
   }
 
-  String? getNome() {
+  String getNome() {
     return this._nome;
   }
 
@@ -35,4 +35,10 @@ class Estoque {
   Estoque.fromJson(Map<String, dynamic> json)
       : this._id = json['id'],
         this._nome = json['nome'];
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return getNome();
+  }
 }

@@ -25,6 +25,7 @@ class Pessoa {
       : this._id = json["id"],
         this._nome = json["nome"];
 
+  Map<String, dynamic> toJson() => {'nome': this._nome};
   @override
   String toString() {
     // TODO: implement toString

@@ -1,6 +1,6 @@
-# logistica_app
+# Inventory app
 
-A new Flutter project.
+This is a Flutter application intended to manage inventorys of stores.
 
 ## Getting Started
 

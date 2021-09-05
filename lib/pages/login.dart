@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:logistica_app/components/TextFields.dart';
 import 'package:logistica_app/components/buttons.dart';
+import 'package:logistica_app/controller/UsuarioController.dart';
+import 'package:logistica_app/models/Usuario.dart';
+import 'package:logistica_app/pages/inicioPage.dart';
 import 'package:toast/toast.dart';
 
 class LoginWidget extends StatelessWidget {
@@ -53,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
         "LOGIN",
         style: TextStyle(color: Colors.white),
       ),
-      onPressed: () {
+      onPressed: () async {
         if (textFildPassController.text == "" ||
             textFildUserController.text == "") {
           Toast.show(
@@ -62,6 +65,24 @@ class _LoginPageState extends State<LoginPage> {
               backgroundColor: Colors.red,
               duration: Toast.LENGTH_LONG,
               gravity: Toast.BOTTOM);
+        } else {
+          Usuario usuario = new Usuario();
+          usuario.setLogin(textFildUserController.text);
+          usuario.setSenha(textFildPassController.text);
+
+          usuario = await login(usuario);
+          if (usuario.getId() != null) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => InicioPage(usuario: usuario)));
+          } else {
+            Toast.show("Usuário ou senha incorretos", context,
+                textColor: Colors.white,
+                backgroundColor: Colors.red,
+                duration: Toast.LENGTH_LONG,
+                gravity: Toast.BOTTOM);
+          }
         }
       },
     );

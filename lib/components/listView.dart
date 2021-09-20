@@ -14,7 +14,9 @@ class CustomList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return new Card(
               child: ListTile(
-                onTap: () => ontap!(),
+                onTap: () {
+                  print(array[index]);
+                },
                 title: Text('${array[index].toString()}'),
                 trailing: Icon(Icons.arrow_forward_ios_rounded),
               ),

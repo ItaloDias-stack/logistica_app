@@ -48,11 +48,13 @@ Future<bool> cadastrarUsuario(Usuario usuario) async {
       },
       body: jsonEncode(j));
 
+  print(response.body);
   if (response.statusCode == 200) {
     //var datauser = json.decode(response.body);
     //Usuario usuarioResponse = Usuario.fromJson(datauser["usuario"]);
     //pessoa.setNome(datauser['pessoa']['nome']);
     //usuarioResponse.setPessoa(pessoa);
+
     return true;
   } else {
     return false;

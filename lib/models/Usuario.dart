@@ -4,7 +4,8 @@ import 'Pessoa.dart';
 
 class Usuario {
   int? _id;
-  String? _login, _senha, _email, _token;
+  String? _login, _senha, _email;
+  late String _token;
   Pessoa _pessoa = new Pessoa();
   List<Estoque> _estoques = [];
 
@@ -24,7 +25,7 @@ class Usuario {
     this._token = token;
   }
 
-  String? getToken() {
+  String getToken() {
     return this._token;
   }
 

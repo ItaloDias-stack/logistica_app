@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:logistica_app/components/listView.dart';
 import 'package:logistica_app/models/Usuario.dart';
+import 'package:logistica_app/pages/cadastroEstoque.dart';
 
 class InicioPage extends StatefulWidget {
   final Usuario usuario;
@@ -36,6 +37,16 @@ class _InicioPageState extends State<InicioPage> {
                   );
                 },
                 itemCount: usuario.getEstoques().length)
-            : Center(child: Text("Nenhum estoque adicionado")));
+            : Center(child: Text("Nenhum estoque adicionado")),
+        floatingActionButton: new FloatingActionButton(
+          child: Icon(Icons.add_rounded),
+          backgroundColor: Colors.cyan.shade700,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CadastroEstoque(user: usuario)));
+          },
+        ));
   }
 }

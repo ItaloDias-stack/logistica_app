@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logistica_app/components/TextFields.dart';
 import 'package:logistica_app/components/buttons.dart';
+import 'package:logistica_app/components/customLoader.dart';
 import 'package:logistica_app/controller/UsuarioController.dart';
 import 'package:logistica_app/models/Pessoa.dart';
 import 'package:logistica_app/models/Usuario.dart';
@@ -67,6 +68,7 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
               backgroundColor: Colors.red,
               gravity: Toast.BOTTOM);
         } else {
+          loading(context);
           Usuario usuario = new Usuario();
           usuario.setEmail(emailController.text);
           usuario.setLogin(loginController.text);
@@ -75,7 +77,9 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
           p.setNome(pessoaController.text);
           usuario.setPessoa(p);
 
-          if (await cadastrarUsuario(usuario)) {
+          bool response = await cadastrarUsuario(usuario);
+          Navigator.pop(context);
+          if (response) {
             //emailController.text = '';
             //loginController.text = '';
             //passController.text = '';

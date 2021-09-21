@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logistica_app/components/TextFields.dart';
 import 'package:logistica_app/components/buttons.dart';
+import 'package:logistica_app/components/customLoader.dart';
 import 'package:logistica_app/controller/UsuarioController.dart';
 import 'package:logistica_app/models/Usuario.dart';
 import 'package:logistica_app/pages/cadastroUsuario.dart';
@@ -70,8 +71,10 @@ class _LoginPageState extends State<LoginPage> {
           Usuario usuario = new Usuario();
           usuario.setLogin(textFildUserController.text);
           usuario.setSenha(textFildPassController.text);
-
+          loading(context);
           usuario = await login(usuario);
+
+          Navigator.pop(context);
           if (usuario.getId() != null) {
             Navigator.push(
                 context,
